@@ -2,7 +2,7 @@
 {
   "title": "Mator's Card Yard",
   "description": "Mator's custom Magic: The Gathering sets.",
-  "baseUrl": "https://matortheeternal.github.io/cardyard",
+  "baseUrl": "https://matortheeternal.github.io/card-yard",
   "disclaimer": "This site is not affiliated with Wizards of the Coast.",
   "sets": [
     "matortheeternal/mtg-the-pale-age"
