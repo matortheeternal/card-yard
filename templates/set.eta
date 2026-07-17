@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= it.set.title %> &mdash; <%= it.site.title %></title>
+    <meta name="description" content="<%= it.set.title %> — <%= it.set.cards.length %> cards">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="<%= it.set.title %> — <%= it.site.title %>">
+    <meta property="og:description" content="<%= it.set.title %> — <%= it.set.cards.length %> cards">
+    <meta property="og:image" content="<%= it.site.baseUrl %>/resources/logo.png">
+    <meta property="og:url" content="<%= it.site.baseUrl %>/sets/<%= it.set.setCode %>">
+    <meta property="og:type" content="website">
+
+    <link rel="icon" href="/resources/favicon.ico">
+    <link rel="stylesheet" href="/styles/base.css">
+    <link rel="stylesheet" href="/styles/components.css">
+    <link rel="stylesheet" href="/styles/set.css">
+
+    <script type="module" src="/scripts/main.js"></script>
+    <script type="module" src="/scripts/set.js"></script>
+</head>
+<body>
+    <%~ include('header') %>
+
+    <main class="set-page">
+        <header class="set-header">
+            <div class="set-header-identity">
+                <div class="set-header-symbol">
+                    <%~ it.set.symbol %>
+                </div>
+                <div class="set-header-meta">
+                    <h1 class="set-header-name"><%= it.set.title %></h1>
+                    <p class="set-header-details">
+                        <span class="set-header-code"><%= it.set.setCode %></span>
+                        <span class="set-header-count"><%= it.set.cards.length %> cards</span>
+                    </p>
+                </div>
+            </div>
+            <div class="set-header-controls">
+                <label class="set-control-label">
+                    Sort by
+                    <select class="set-control-select" id="sort-select">
+                        <option value="color">Color</option>
+                        <option value="rarity">Rarity</option>
+                        <option value="name">Name</option>
+                        <option value="cmc">Mana Value</option>
+                        <option value="number">Number</option>
+                    </select>
+                </label>
+                <label class="set-control-label">
+                    Order
+                    <select class="set-control-select" id="order-select">
+                        <option value="asc">Asc</option>
+                        <option value="desc">Desc</option>
+                    </select>
+                </label>
+            </div>
+        </header>
+
+        <section class="card-grid-section">
+            <div class="card-grid" id="card-grid">
+                <% for (const card of it.set.cards) { %>
+                <% const isToken = /\b(token|emblem)\b/i.test(card.front.superType || ''); %>
+                <% const collectorNumber = card.front.collectorNumber
+                    || card.front.autoCollectorNumber; %>
+                <a class="card-grid-item"
+                   href="/sets/<%= it.set.setCode %>/<%= card.slug %>"
+                   data-name="<%= card.front.name %>"
+                   data-color="<%= card.color %>"
+                   data-rarity="<%= card.front.rarity %>"
+                   data-cost="<%= card.front.manaCost?.join?.('') || '' %>"
+                   data-number="<%= collectorNumber %>"
+                   <%= isToken ? 'data-is-token' : '' %> >
+                    <img
+                        class="card-grid-image"
+                        src="<%= it.set.imageExportPath %><%= card.imageExports.front %>"
+                        alt="<%= card.front.name %>"
+                        loading="lazy"
+                    />
+                </a>
+                <% } %>
+            </div>
+        </section>
+
+        <div class="card-zoom-overlay" id="card-zoom-overlay" aria-hidden="true">
+            <img class="card-zoom-image" id="card-zoom-image" alt="" />
+        </div>
+
+    </main>
+
+    <div class="zoom-hint" id="zoom-hint">
+        <kbd>Shift</kbd> + hover to zoom &nbsp;·&nbsp; scroll to resize
+    </div>
+
+    <%~ include('footer') %>
+</body>
+</html>

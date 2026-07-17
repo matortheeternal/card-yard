@@ -1,0 +1,128 @@
+main.card {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    max-width: var(--page-max-width);
+    margin: 2.5rem auto;
+    padding: var(--page-padding);
+    justify-content: center;
+    flex: 1;
+}
+
+.image-container {
+    flex-shrink: 0;
+    width: 20rem;
+    z-index: 2;
+}
+
+.image-container img {
+    width: 100%;
+    border-radius: 4%;
+    display: block;
+}
+
+.properties-container {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 2em;
+    margin-left: -1em;
+    border: 1px solid var(--color-border);
+    border-top-width: 5px;
+    border-bottom-width: 5px;
+    max-width: 24rem;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--color-surface);
+}
+
+.properties-container > * {
+    padding: 0.85rem 2rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.properties-container > *:last-child {
+    border-bottom: none;
+}
+
+.properties-container h1 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+.card-cost {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    flex-shrink: 0;
+}
+
+.card-symbol {
+    display: inline-block;
+    background-size: 100% 100%;
+    background-position: top left;
+    box-shadow: -1px 1px 0 rgba(0,0,0,0.85);
+    width: 1.2em;
+    text-decoration: none;
+    cursor: default;
+    text-indent: -999em;
+    overflow: hidden;
+    border-radius: 500px;
+    margin: -2px 1px -1px 1px;
+}
+
+.card-text-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    line-height: 1.6;
+    font-size: 0.92rem;
+
+    p:not(:last-of-type) {
+        margin-bottom: 0.8em;
+    }
+
+    .card-symbol {
+        width: 1em;
+        height: 1em;
+    }
+
+    .a {
+        font-style: italic;
+    }
+
+    .s {
+        white-space: nowrap;
+    }
+
+    .r {
+        font-style: italic;
+
+        .card-symbol {
+            margin-left: 5px;
+        }
+    }
+
+    .b {
+        font-style: normal;
+    }
+}
+
+.card-text-flavor {
+    font-style: italic;
+    color: var(--color-text-muted);
+}
+
+.card-text-stats {
+    font-weight: bold;
+}
+
+.card-text-artist {
+    font-size: 0.8rem;
+}

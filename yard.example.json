@@ -1,0 +1,12 @@
+
+{
+  "user": "your-name",
+  "title": "My Card Yard",
+  "description": "Name's custom Magic: The Gathering sets.",
+  "baseUrl": "https://your-github-username.github.io",
+  "disclaimer": "This site is not affiliated with Wizards of the Coast.",
+  "sets": [
+    "my-set-repository",
+    "another-set-repository"
+  ]
+}

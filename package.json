@@ -1,0 +1,31 @@
+{
+  "name": "card-yard",
+  "version": "1.0.0",
+  "description": "A template for hosting Card Magician card sets on github pages.",
+  "homepage": "https://github.com/matortheeternal/card-yard#readme",
+  "bugs": {
+    "url": "https://github.com/matortheeternal/card-yard/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matortheeternal/card-yard.git"
+  },
+  "license": "MIT",
+  "author": "mator",
+  "type": "module",
+  "scripts": {
+    "build": "node tasks/build.js",
+    "serve": "sirv dist --dev"
+  },
+  "dependencies": {
+    "@sigil-sifter/magic": "^1.0.1",
+    "@sigil-sifter/magic-cm": "^1.0.0",
+    "eta": "^4.6.0",
+    "js-beautify": "^1.15.4",
+    "mana-scribe": "^2.3.0",
+    "sigil-sifter": "^1.0.0"
+  },
+  "devDependencies": {
+    "sirv-cli": "^3.0.1"
+  }
+}

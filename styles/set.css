@@ -1,0 +1,196 @@
+/* ============================================================
+   set.css — set page layout, card grid, zoom overlay
+   ============================================================ */
+
+:root {
+    --zoom-size: 600px;
+}
+
+main.set-page {
+    max-width: var(--page-max-width);
+    margin: 0 auto;
+    padding: 2rem 2rem 5rem;
+    flex: 1;
+    width: 100%;
+}
+
+.set-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+    flex-wrap: wrap;
+}
+
+.set-header-identity {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.set-header-symbol {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.set-header-symbol svg {
+    width: 100%;
+    height: 100%;
+}
+
+.set-header-name {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.set-header-details {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.2rem;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+}
+
+.set-header-code {
+    font-family: monospace;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 0.1rem 0.4rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.set-header-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+}
+
+.set-control-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    cursor: pointer;
+}
+
+.set-control-select {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+    cursor: pointer;
+    transition: border-color 0.15s ease;
+    appearance: auto;
+}
+
+.set-control-select:hover,
+.set-control-select:focus {
+    border-color: var(--color-accent);
+    outline: none;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.75rem;
+}
+
+.card-grid-item {
+    display: block;
+    border-radius: 4%;
+    overflow: hidden;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    cursor: pointer;
+}
+
+.card-grid-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.card-grid-image {
+    width: 100%;
+    display: block;
+    border-radius: 4%;
+}
+
+.card-zoom-overlay {
+    position: fixed;
+    z-index: 200;
+    pointer-events: none;
+    display: none;
+    filter: drop-shadow(0 16px 40px rgba(0, 0, 0, 0.8));
+}
+
+.card-zoom-overlay.visible {
+    display: block;
+}
+
+.card-zoom-image {
+    border-radius: 4%;
+    width: var(--zoom-size, 360px);
+    display: block;
+}
+
+.zoom-hint {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(15, 14, 20, 0.9);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    white-space: nowrap;
+}
+
+.zoom-hint.hidden {
+    opacity: 0;
+}
+
+kbd {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 0.1rem 0.35rem;
+    font-size: 0.68rem;
+    font-family: monospace;
+}
+
+@media (max-width: 640px) {
+    .set-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .set-header-controls {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .card-grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    }
+}

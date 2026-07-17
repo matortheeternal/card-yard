@@ -1,0 +1,12 @@
+<nav class="navbar">
+    <a class="navbar-brand" href="/">
+        <img src="/resources/logo.svg" alt="<%= it.site.title %>" class="navbar-logo">
+        <span class="navbar-title"><%= it.site.title %></span>
+    </a>
+    <ca-search-bar></ca-search-bar>
+    <ul class="navbar-links">
+        <li><a href="/sets">All Sets</a></li>
+        <li><a href="/deckbuilder">Deckbuilder</a></li>
+        <li><a href="/random">Random Card</a></li>
+    </ul>
+</nav>

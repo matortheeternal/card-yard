@@ -1,0 +1,63 @@
+/* ============================================================
+   base.css — global reset, variables, and foundational styles
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500&display=swap');
+
+:root {
+    /* Colors */
+    --bg-gradient-top: #1d1c25;
+    --bg-gradient-bottom: #0e250e;
+    --color-text: #ffffff;
+    --color-text-muted: rgba(255, 255, 255, 0.55);
+    --color-accent: #7ecf7e;
+    --color-accent-dim: rgba(126, 207, 126, 0.15);
+    --color-border: rgba(255, 255, 255, 0.1);
+    --color-surface: rgba(255, 255, 255, 0.05);
+    --color-surface-hover: rgba(255, 255, 255, 0.09);
+
+    /* Typography */
+    --font-display: 'Cinzel', serif;
+    --font-body: 'Raleway', sans-serif;
+
+    /* Spacing */
+    --navbar-height: 3rem;
+    --page-max-width: 1400px;
+    --page-padding: 0 2rem;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 21px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    font-weight: 400;
+    color: var(--color-text);
+    background: linear-gradient(to bottom, var(--bg-gradient-top), var(--bg-gradient-bottom));
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img, svg {
+    display: block;
+    max-width: 100%;
+}
+
+ul {
+    list-style: none;
+}

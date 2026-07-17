@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= it.site.title %></title>
+    <meta name="description" content="<%= it.site.description %>">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="<%= it.site.title %>">
+    <meta property="og:description" content="<%= it.site.description %>">
+    <meta property="og:image" content="<%= it.site.baseUrl %>/resources/logo.png">
+    <meta property="og:url" content="<%= it.site.baseUrl %>">
+    <meta property="og:type" content="website">
+
+    <link rel="icon" href="/resources/favicon.ico">
+    <link rel="stylesheet" href="/styles/base.css">
+    <link rel="stylesheet" href="/styles/components.css">
+
+    <script type="module" src="/scripts/main.js"></script>
+</head>
+<body>
+    <%~ include('header') %>
+
+    <main class="home">
+        <% if (it.site.banner) { %>
+        <header class="home-header">
+            <img src="<%= it.site.banner %>" alt="<%= it.site.title %>" class="home-banner">
+        </header>
+        <% } %>
+
+        <section>
+            <h2 class="section-title">Featured Sets</h2>
+            <div class="featured-sets">
+                <% for (const set of it.sets) { %>
+                <a class="set-card" href="/sets/<%= set.code %>">
+                    <div class="set-symbol-wrap">
+                        <%~ set.symbol %>
+                    </div>
+                    <span class="set-name"><%= set.name %></span>
+                </a>
+                <% } %>
+            </div>
+        </section>
+    </main>
+
+    <%~ include('footer') %>
+</body>
+</html>

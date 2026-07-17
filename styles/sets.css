@@ -1,0 +1,44 @@
+main.sets {
+    margin: 2em auto;
+    flex: 1;
+    max-width: var(--page-max-width);
+}
+
+.set-grid {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.set-full {
+    display: grid;
+    grid-template-columns: 1fr 10fr;
+    gap: 0.5em;
+    padding: 1em;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+
+.set-full .set-symbol-wrap {
+    width: 4em;
+    height: 4em;
+}
+
+.set-full h3 {
+    font-size: 1.3em;
+    font-family: var(--font-display);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 0.4em;
+    display: inline-block;
+}
+
+.set-description {
+    font-size: 0.8em;
+    color: var(--color-text-muted);
+}
+
+.set-full:hover {
+    background: var(--color-surface-hover);
+    border-color: var(--color-accent-dim);
+    transform: translateY(-3px);
+}

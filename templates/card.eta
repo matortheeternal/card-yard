@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= it.site.title %></title>
+    <meta name="description" content="<%= it.site.description %>">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="<%= it.site.title %>">
+    <meta property="og:description" content="<%= it.site.description %>">
+    <meta property="og:image" content="<%= it.site.baseUrl %>/resources/logo.png">
+    <meta property="og:url" content="<%= it.site.baseUrl %>">
+    <meta property="og:type" content="website">
+
+    <link rel="icon" href="/resources/favicon.ico">
+    <link rel="stylesheet" href="/styles/base.css">
+    <link rel="stylesheet" href="/styles/components.css">
+    <link rel="stylesheet" href="/styles/card.css">
+
+    <script type="module" src="/scripts/main.js"></script>
+</head>
+<body>
+    <%~ include('header') %>
+
+    <main class="card">
+        <div class="image-container">
+            <img
+                alt="<%= it.card.front.name %>"
+                src="<%= it.set.imageExportPath %><%= it.card.imageExports.front %>"
+            />
+        </div>
+
+        <div class="properties-container">
+            <h1>
+                <span class="card-name"><%= it.card.front.name %></span>
+                <% if (it.card.front.manaCost) { %>
+                <span class="card-cost">
+                    <% for (const sym of it.card.front.manaCost) { %>
+                    <abbr class="card-symbol"
+                          style="background-image: url('/resources/symbols/<%= sym %>.svg')">
+                          {<%= sym %>}
+                    </abbr>
+                    <% } %>
+                </span>
+                <% } %>
+            </h1>
+            <p class="card-text-type-line">
+                <%= it.card.front.superType %>
+                <% if (it.card.front.subType) { %>
+                – <%= it.card.front.subType %>
+                <% } %>
+            </p>
+            <div class="card-text-box">
+                <div class="card-text-oracle">
+                    <%~ it.renderOracleText(it.card.front.rulesText, it.card.front) %>
+                </div>
+                <% if (it.card.front.flavorText) { %>
+                <div class="card-text-flavor">
+                    <%~ it.renderFlavorText(it.card.front.flavorText) %>
+                </div>
+                <% } %>
+            </div>
+            <% if (it.card.front.power) { %>
+            <div class="card-text-stats">
+                <%= it.card.front.power %>/<%= it.card.front.toughness %>
+            </div>
+            <% } %>
+            <div class="card-text-artist">
+            <% if (it.card.front.illustrator) { %>
+                Illustrated by <%= it.card.front.illustrator %>
+            <% } else { %>
+                Illustrator not specified
+            <% } %>
+            </div>
+        </div>
+    </main>
+
+    <%~ include('footer') %>
+</body>
+</html>
