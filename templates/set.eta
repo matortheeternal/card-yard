@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= it.set.title %> &mdash; <%= it.site.title %></title>
     <meta name="description" content="<%= it.set.title %> — <%= it.set.cards.length %> cards">
+    <base href="<%= it.site.baseUrl %>/">
 
     <!-- Open Graph -->
     <meta property="og:title" content="<%= it.set.title %> — <%= it.site.title %>">
@@ -13,13 +14,13 @@
     <meta property="og:url" content="<%= it.site.baseUrl %>/sets/<%= it.set.setCode %>">
     <meta property="og:type" content="website">
 
-    <link rel="icon" href="/resources/favicon.ico">
-    <link rel="stylesheet" href="/styles/base.css">
-    <link rel="stylesheet" href="/styles/components.css">
-    <link rel="stylesheet" href="/styles/set.css">
+    <link rel="icon" href="resources/favicon.ico">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/set.css">
 
-    <script type="module" src="/scripts/main.js"></script>
-    <script type="module" src="/scripts/set.js"></script>
+    <script type="module" src="scripts/main.js"></script>
+    <script type="module" src="scripts/set.js"></script>
 </head>
 <body>
     <%~ include('header') %>
@@ -66,7 +67,7 @@
                 <% const collectorNumber = card.front.collectorNumber
                     || card.front.autoCollectorNumber; %>
                 <a class="card-grid-item"
-                   href="/sets/<%= it.set.setCode %>/<%= card.slug %>"
+                   href="sets/<%= it.set.setCode %>/<%= card.slug %>"
                    data-name="<%= card.front.name %>"
                    data-color="<%= card.color %>"
                    data-rarity="<%= card.front.rarity %>"

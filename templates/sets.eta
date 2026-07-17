@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= it.site.title %></title>
     <meta name="description" content="<%= it.site.description %>">
+    <base href="<%= it.site.baseUrl %>/">
 
     <!-- Open Graph -->
     <meta property="og:title" content="<%= it.site.title %>">
@@ -13,12 +14,12 @@
     <meta property="og:url" content="<%= it.site.baseUrl %>">
     <meta property="og:type" content="website">
 
-    <link rel="icon" href="/resources/favicon.ico">
-    <link rel="stylesheet" href="/styles/base.css">
-    <link rel="stylesheet" href="/styles/components.css">
-    <link rel="stylesheet" href="/styles/sets.css">
+    <link rel="icon" href="resources/favicon.ico">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/sets.css">
 
-    <script type="module" src="/scripts/main.js"></script>
+    <script type="module" src="scripts/main.js"></script>
 </head>
 <body>
     <%~ include('header') %>
@@ -28,7 +29,7 @@
             <h2 class="section-title">All Sets</h2>
             <div class="set-grid">
                 <% for (const set of it.sets) { %>
-                <a href="/sets/<%= set.setCode %>" class="set-full">
+                <a href="sets/<%= set.setCode %>" class="set-full">
                     <div>
                         <div class="set-symbol-wrap">
                             <%~ set.symbol %>
