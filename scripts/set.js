@@ -119,8 +119,8 @@ function sortCards(keyOverride = null, directionOverride = null) {
     cards.forEach(card => grid.appendChild(card));
 }
 
-sortSelect.addEventListener('change', sortCards);
-orderSelect.addEventListener('change', sortCards);
+sortSelect.addEventListener('change', () => sortCards());
+orderSelect.addEventListener('change', () => sortCards());
 
 document.addEventListener('DOMContentLoaded', function() {
     sortCards('rarity', 'asc');
