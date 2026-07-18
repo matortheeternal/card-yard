@@ -7,7 +7,7 @@ function replaceReminderText(match) {
 function costToHtml(cost) {
     return cost.symbols.map(sym => {
         const filename = sym.toString().replaceAll('/', '');
-        const style = `background-image: url('/resources/symbols/${filename}.svg')`;
+        const style = `background-image: url('resources/symbols/${filename}.svg')`;
         return `<abbr class="card-symbol" style="${style}">${sym.raw}</abbr>`;
     }).join('') + cost.remainingStr;
 }
