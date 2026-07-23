@@ -40,6 +40,21 @@ async function buildSearchPage(siteConfig, sets) {
         path.join(PATHS.dist, 'search-index.json'),
         JSON.stringify(index)
     );
+    // Also write a full index with set code for the simulator
+    writeFile(
+        path.join(PATHS.dist, 'simulator-data.json'),
+        JSON.stringify(sets.map(s => ({
+            code: s.setCode,
+            imageExportPath: s.imageExportPath,
+            cards: s.cards.map(c => ({
+                name: c.front.name,
+                rarity: c.front.rarity,
+                image: c.imageExports.front,
+                slug: c.slug,
+                superType: c.front.superType
+            }))
+        })))
+    );
     const html = await renderTemplate('search', { site: siteConfig });
     writeFile(path.join(PATHS.dist, 'search', 'index.html'), html);
 }
@@ -98,6 +113,19 @@ function transformCardData(sets) {
     }
 }
 
+async function buildSimulatorPage(siteConfig, sets) {
+    console.log('  Rendering simulator.html');
+    const html = await renderTemplate('simulator', {
+        site: siteConfig,
+        sets: sets.map(s => ({
+            code:   s.setCode,
+            name:   s.title,
+        })),
+    });
+    ensureDir(path.join(PATHS.dist, 'simulator'));
+    writeFile(path.join(PATHS.dist, 'simulator', 'index.html'), html);
+}
+
 export async function buildPages(config, sets) {
     ensureDir(PATHS.dist);
     transformCardData(sets);
@@ -106,4 +134,5 @@ export async function buildPages(config, sets) {
     await buildSetPages(config, sets);
     await buildSearchPage(config, sets);
     await buildDeckbuilderPage(config);
+    await buildSimulatorPage(config, sets);
 }

@@ -9,6 +9,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 global.PATHS = {
     yard:      path.join(__dirname, '..', 'yard.json'),
+    yardDev:   path.join(__dirname, '..', 'yard.dev.json'),
     templates: path.join(__dirname, '..', 'templates'),
     styles:    path.join(__dirname, '..', 'styles'),
     scripts:   path.join(__dirname, '..', 'scripts'),
@@ -17,18 +18,22 @@ global.PATHS = {
 };
 
 async function loadConfig() {
-    if (!fs.existsSync(PATHS.yard)) {
+    let configPath = PATHS.yard;
+    if (fs.existsSync(PATHS.yardDev)) {
+        console.log('→ Using yard.dev.json');
+        configPath = PATHS.yardDev;
+    } else if (!fs.existsSync(PATHS.yard)) {
         console.error('❌ yard.json not found.');
         console.error('   Copy yard.example.json to yard.json and fill in your details.');
         process.exit(1);
     }
-    return JSON.parse(fs.readFileSync(PATHS.yard, 'utf8'));
+    return JSON.parse(fs.readFileSync(configPath, 'utf8'));
 }
 
 async function build() {
     console.log('🃏 Card Yard build starting...\n');
 
-    console.log('→ Loading yard.json');
+    console.log('→ Loading configuration');
     const config = await loadConfig();
 
     console.log('→ Fetching set data');
