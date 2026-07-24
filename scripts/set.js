@@ -15,6 +15,8 @@ const hint    = document.getElementById('zoom-hint');
 let zoomSize = ZOOM_DEFAULT;
 let shiftDown  = false;
 let activeCard = null;
+let hoveredCard = null;
+let currentLoadUrl = null;
 
 function showHint() {
     hint.classList.remove('hidden');
@@ -32,8 +34,30 @@ function positionOverlay(e) {
 function showZoom(card, e) {
     const img = card.querySelector('.card-grid-image');
     if (!img) return;
-    zoomImg.src = img.src;
+
+    const fullSrc = card.dataset.imageFull;
+    const thumbSrc = img.src;
+
+    // Show thumbnail immediately
+    zoomImg.src = thumbSrc;
     zoomImg.alt = img.alt;
+    zoomImg.classList.add('loading');
+
+    // Preload full image
+    if (fullSrc && fullSrc !== thumbSrc) {
+        currentLoadUrl = fullSrc;
+        const loader = new Image();
+        loader.onload = () => {
+            if (currentLoadUrl === fullSrc) {
+                zoomImg.src = fullSrc;
+                zoomImg.classList.remove('loading');
+            }
+        };
+        loader.src = fullSrc;
+    } else {
+        zoomImg.classList.remove('loading');
+    }
+
     overlay.style.setProperty('--zoom-size', `${zoomSize}px`);
     overlay.classList.add('visible');
     positionOverlay(e);
@@ -42,12 +66,19 @@ function showZoom(card, e) {
 function hideZoom() {
     overlay.classList.remove('visible');
     activeCard = null;
+    currentLoadUrl = null;
 }
 
 document.addEventListener('keydown', e => {
     if (e.key !== 'Shift') return;
     shiftDown = true;
     showHint();
+
+    // Trigger zoom if already hovering over a card
+    if (hoveredCard) {
+        activeCard = hoveredCard;
+        showZoom(hoveredCard, { clientX: lastMouseX, clientY: lastMouseY });
+    }
 });
 
 document.addEventListener('keyup', e => {
@@ -56,9 +87,18 @@ document.addEventListener('keyup', e => {
     hideZoom();
 });
 
+let lastMouseX = 0;
+let lastMouseY = 0;
+
 document.addEventListener('mousemove', e => {
-    if (!shiftDown) return;
+    if (!e.target) return;
+    lastMouseX = e.clientX;
+    lastMouseY = e.clientY;
+
     const card = e.target.closest('.card-grid-item');
+    hoveredCard = card;
+
+    if (!shiftDown) return;
     if (!card) { hideZoom(); return; }
     activeCard = card;
     showZoom(card, e);
@@ -119,10 +159,16 @@ function sortCards(keyOverride = null, directionOverride = null) {
     cards.forEach(card => grid.appendChild(card));
 }
 
-sortSelect.addEventListener('change', () => sortCards());
-orderSelect.addEventListener('change', () => sortCards());
+if (sortSelect) {
+    sortSelect.addEventListener('change', () => sortCards());
+}
+if (orderSelect) {
+    orderSelect.addEventListener('change', () => sortCards());
+}
 
 document.addEventListener('DOMContentLoaded', function() {
-    sortCards('rarity', 'asc');
-    sortCards('color', 'asc');
+    if (sortSelect && orderSelect) {
+        sortCards('rarity', 'asc');
+        sortCards('color', 'asc');
+    }
 });

@@ -147,6 +147,11 @@ main.set-page {
     border-radius: 4%;
     width: var(--zoom-size, 360px);
     display: block;
+    transition: filter 0.2s ease;
+}
+
+.card-zoom-image.loading {
+    filter: blur(2px) grayscale(0.5);
 }
 
 .zoom-hint {
