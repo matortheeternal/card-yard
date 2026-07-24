@@ -18,8 +18,8 @@
     "serve": "sirv dist --dev"
   },
   "dependencies": {
-    "@sigil-sifter/magic": "^1.0.1",
-    "@sigil-sifter/magic-cm": "^1.0.0",
+    "@sigil-sifter/magic": "^1.1.0",
+    "@sigil-sifter/magic-cm": "^1.2.0",
     "eta": "^4.6.0",
     "js-beautify": "^1.15.4",
     "mana-scribe": "^2.3.0",
