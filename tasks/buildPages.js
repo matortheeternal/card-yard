@@ -138,6 +138,15 @@ async function buildSimulatorPage(siteConfig, sets) {
     writeFile(path.join(PATHS.dist, 'simulator', 'index.html'), html);
 }
 
+async function buildRandomPage(siteConfig) {
+    console.log('  Rendering random.html');
+    const html = await renderTemplate('random', {
+        site: siteConfig,
+    });
+    ensureDir(path.join(PATHS.dist, 'random'));
+    writeFile(path.join(PATHS.dist, 'random', 'index.html'), html);
+}
+
 export async function buildPages(config, sets) {
     ensureDir(PATHS.dist);
     transformCardData(sets);
@@ -147,4 +156,5 @@ export async function buildPages(config, sets) {
     await buildSearchPage(config, sets);
     await buildDeckbuilderPage(config);
     await buildSimulatorPage(config, sets);
+    await buildRandomPage(config);
 }
