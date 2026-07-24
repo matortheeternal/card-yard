@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pack Simulator — <%= it.site.title %></title>
+    <title>Simulator — <%= it.site.title %></title>
     <meta name="description" content="Simulate opening a pack of cards from supported sets.">
     <base href="<%= it.site.baseUrl %>/">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Pack Simulator — <%= it.site.title %>">
+    <meta property="og:title" content="Simulator — <%= it.site.title %>">
     <meta property="og:description" content="Simulate opening a pack of cards from supported sets.">
     <meta property="og:image" content="<%= it.site.baseUrl %>/resources/logo.png">
     <meta property="og:url" content="<%= it.site.baseUrl %>/simulator">
@@ -28,20 +28,20 @@
     <main class="set-page">
         <header class="set-header">
             <div class="set-header-meta">
-                <h1 class="set-header-name">Pack Simulator</h1>
+                <h1 class="set-header-name">Simulator</h1>
                 <p class="set-header-details">Open a virtual pack</p>
             </div>
             <div class="set-header-controls">
                 <label class="set-control-label">
                     Select Set
-                    <select class="set-control-select" id="set-select">
+                    <select id="set-select">
                         <option value="">-- Choose a set --</option>
                         <% for (const set of it.sets) { %>
                         <option value="<%= set.code %>"><%= set.name %> (<%= set.code %>)</option>
                         <% } %>
                     </select>
                 </label>
-                <button id="open-pack-btn" class="set-control-select" style="cursor: pointer; background: var(--color-accent); color: #000; border: none; padding: 0.5rem 1rem; border-radius: 4px; font-weight: bold;">Open Pack</button>
+                <button id="open-pack-btn" style="cursor: pointer; background: var(--color-accent); color: #000; border: none; padding: 0.5rem 1rem; border-radius: 4px; font-weight: bold;">Open Pack</button>
             </div>
         </header>
 

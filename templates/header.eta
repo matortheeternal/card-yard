@@ -6,7 +6,7 @@
     <ul class="navbar-links">
         <li><ca-search-bar></ca-search-bar></li>
         <li><a href="sets">All Sets</a></li>
-        <li><a href="simulator">Pack Simulator</a></li>
+        <li><a href="simulator">Simulator</a></li>
         <li><a href="deckbuilder">Deckbuilder</a></li>
         <li><a href="random">Random Card</a></li>
     </ul>

@@ -1,5 +1,5 @@
 /**
- * simulator.js — Client-side logic for the Pack Simulator
+ * simulator.js — Client-side logic for the Simulator
  */
 
 let simulatorData = null;
