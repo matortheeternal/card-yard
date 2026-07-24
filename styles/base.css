@@ -61,3 +61,22 @@ img, svg {
 ul {
     list-style: none;
 }
+
+select {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+    cursor: pointer;
+    transition: border-color 0.15s ease;
+    appearance: auto;
+}
+
+select:hover,
+select:focus {
+    border-color: var(--color-accent);
+    outline: none;
+}

@@ -42,7 +42,7 @@
             <div class="set-header-controls">
                 <label class="set-control-label">
                     Sort by
-                    <select class="set-control-select" id="sort-select">
+                    <select id="sort-select">
                         <option value="color">Color</option>
                         <option value="rarity">Rarity</option>
                         <option value="name">Name</option>
@@ -52,7 +52,7 @@
                 </label>
                 <label class="set-control-label">
                     Order
-                    <select class="set-control-select" id="order-select">
+                    <select id="order-select">
                         <option value="asc">Asc</option>
                         <option value="desc">Desc</option>
                     </select>
