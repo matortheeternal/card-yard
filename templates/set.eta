@@ -66,6 +66,14 @@
                 <% const isToken = /\b(token|emblem)\b/i.test(card.front.superType || ''); %>
                 <% const collectorNumber = card.front.collectorNumber
                     || card.front.autoCollectorNumber; %>
+                <%
+                    const fullImageUrl = `${it.set.imageExportPath}${card.imageExports.front}`;
+                    let displayImageUrl = fullImageUrl;
+                    if (it.site.thumbnails?.enabled) {
+                        const width = it.site.thumbnails.width || 300;
+                        displayImageUrl = `https://wsrv.nl/?url=${encodeURIComponent(fullImageUrl)}&w=${width}&output=webp`;
+                    }
+                %>
                 <a class="card-grid-item"
                    href="sets/<%= it.set.setCode %>/<%= card.slug %>"
                    data-name="<%= card.front.name %>"
@@ -73,10 +81,11 @@
                    data-rarity="<%= card.front.rarity %>"
                    data-cost="<%= card.front.manaCost?.join?.('') || '' %>"
                    data-number="<%= collectorNumber %>"
+                   data-image-full="<%= fullImageUrl %>"
                    <%= isToken ? 'data-is-token' : '' %> >
                     <img
                         class="card-grid-image"
-                        src="<%= it.set.imageExportPath %><%= card.imageExports.front %>"
+                        src="<%= displayImageUrl %>"
                         alt="<%= card.front.name %>"
                         loading="lazy"
                     />

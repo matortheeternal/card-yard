@@ -38,7 +38,10 @@ async function buildSearchPage(siteConfig, sets) {
     const index = buildSearchIndex(sets);
     writeFile(
         path.join(PATHS.dist, 'search-index.json'),
-        JSON.stringify(index)
+        JSON.stringify({
+            thumbnails: siteConfig.thumbnails,
+            cards: index
+        })
     );
     // Also write a full index with set code for the simulator
     writeFile(

@@ -8,5 +8,9 @@
   "sets": [
     "my-set-repository",
     "another-set-repository"
-  ]
+  ],
+  "thumbnails": {
+    "enabled": true,
+    "width": 300
+  }
 }
