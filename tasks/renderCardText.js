@@ -37,6 +37,16 @@ const bracketExpr = /\[([^\]]+)]/g;
 const reminderTextExpr = /\([^)]+\)/g;
 const symbolsExpr = /({[^}]+})+/g;
 
+function isLegendary(card) {
+    return /\blegendary\b/i.test(card.superType);
+}
+
+function getLegendName(card) {
+    if (!isLegendary(card)) return card.name;
+    const match = card.name.match(/^(.+),|(.+) the/);
+    return match ? match[1] || match[2] : card.name;
+}
+
 export function renderOracleText(sourceText, card) {
     if (!sourceText) return '';
     const paragraphs = sourceText.split('\n').filter(Boolean);
@@ -47,7 +57,7 @@ export function renderOracleText(sourceText, card) {
             .replaceAll(symbolsExpr, replaceSymbols)
             .replaceAll(abilityWordExpr, replaceAbilityWords)
             .replaceAll(cardNameExpr, () => card.name)
-            .replaceAll(legendNameExpr, () => card.legendName);
+            .replaceAll(legendNameExpr, () => getLegendName(card));
         return `<p>${html}</p>`;
     }).join('\n');
 }
