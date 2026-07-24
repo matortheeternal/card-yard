@@ -1,0 +1,104 @@
+.search-page-header {
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.search-page-header-inner {
+    max-width: var(--page-max-width);
+    margin: 0 auto;
+    padding: 1rem 2rem;
+}
+
+.search-page-search-bar {
+    width: 100%;
+}
+
+.search-page-search-bar .search-form {
+    height: 48px;
+    border-radius: 4px;
+}
+
+.search-page-search-bar .search-input {
+    font-size: 1.1rem;
+}
+
+.search-status-bar {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.search-status-inner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: var(--page-max-width);
+    padding: 0.5rem 2rem;
+    margin: 0 auto;
+}
+
+.search-status-text {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.search-status-text span {
+    font-size: 0.8rem;
+}
+
+.search-pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.search-results-report {
+    font-size: 0.8rem;
+    color: var(--color-text);
+    padding: 0.5rem 2rem;
+    width: var(--page-max-width);
+    margin: 0 auto;
+}
+
+.search-results-report strong {
+    color: var(--color-accent);
+    font-weight: initial;
+}
+
+.search-results-report .query-display {
+    color: var(--color-text-muted);
+}
+
+.pagination-btn {
+    padding: 0.3rem 0.75rem;
+    border-radius: 4px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-size: 0.85rem;
+}
+
+.pagination-btn:hover:not(:disabled) {
+    background: var(--color-surface-hover);
+    border-color: var(--color-accent-dim);
+}
+
+.pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.no-results {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--color-surface);
+    border-radius: 12px;
+    border: 1px dashed var(--color-border);
+    margin: 0 2rem;
+}

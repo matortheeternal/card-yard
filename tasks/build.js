@@ -3,6 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { fetchSets } from './fetchSets.js';
 import { buildPages } from './buildPages.js';
+import { bundleScripts } from './bundleScripts.js';
 import { copyStaticAssets } from './copyStaticAssets.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -45,6 +46,9 @@ async function build() {
 
     console.log('\n→ Copying static assets');
     copyStaticAssets();
+
+    console.log('\n→ Bundling scripts');
+    await bundleScripts();
 
     console.log('\n✅ Build complete → dist/');
 }

@@ -5,8 +5,11 @@ import { renderFlavorText, renderOracleText } from './renderCardText.js';
 function buildSearchIndex(sets) {
     const cards = [];
     for (const set of sets) {
-        for (const card of set.cards ?? [])
+        for (const card of set.cards ?? []) {
+            card.setCode = set.setCode;
+            card.imageExportPath = set.imageExportPath;
             cards.push(card);
+        }
     }
     return cards;
 }
@@ -58,7 +61,13 @@ async function buildSearchPage(siteConfig, sets) {
             }))
         })))
     );
-    const html = await renderTemplate('search', { site: siteConfig });
+    const html = await renderTemplate('search', {
+        site: siteConfig,
+        sets: sets.map(s => ({
+            code: s.setCode,
+            name: s.title
+        }))
+    });
     writeFile(path.join(PATHS.dist, 'search', 'index.html'), html);
 }
 

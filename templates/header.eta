@@ -3,8 +3,8 @@
         <img src="resources/logo.svg" alt="<%= it.site.title %>" class="navbar-logo">
         <span class="navbar-title"><%= it.site.title %></span>
     </a>
-    <ca-search-bar></ca-search-bar>
     <ul class="navbar-links">
+        <li><ca-search-bar></ca-search-bar></li>
         <li><a href="sets">All Sets</a></li>
         <li><a href="simulator">Pack Simulator</a></li>
         <li><a href="deckbuilder">Deckbuilder</a></li>

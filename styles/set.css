@@ -8,8 +8,8 @@
 
 main.set-page {
     max-width: var(--page-max-width);
-    margin: 0 auto;
-    padding: 2rem 2rem 5rem;
+    margin: 1rem auto;
+    padding: 0 2rem;
     flex: 1;
     width: 100%;
 }

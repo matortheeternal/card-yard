@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search &mdash; <%= it.site.title %></title>
+    <base href="<%= it.site.baseUrl %>/">
+
+    <link rel="icon" href="resources/favicon.ico">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/set.css">
+    <link rel="stylesheet" href="styles/search.css">
+
+    <script type="module" src="scripts/main.js"></script>
+    <script type="module" src="scripts/set.js"></script>
+    <script type="module" src="scripts/search.js"></script>
+</head>
+<body>
+    <%~ include('header') %>
+
+    <header class="search-page-header">
+        <div class="search-page-header-inner">
+            <section class="search-page-search-bar">
+                <div class="search-form">
+                    <input type="text" id="on-page-search-input" class="search-input" placeholder="Search cards..." aria-label="Search cards">
+                    <button type="button" id="on-page-search-submit" class="search-submit">
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </button>
+                </div>
+            </section>
+        </div>
+    </header>
+
+    <div class="search-status-bar">
+        <div class="search-status-inner">
+            <div class="search-status-text">
+                <span>Searching</span>
+                <select id="search-type-select">
+                    <option value="draftable">Draftable Cards</option>
+                    <option value="all">All Cards</option>
+                </select>
+                <span>from</span>
+                <select id="scope-select">
+                    <option value="all">All Sets</option>
+                    <% for (const set of it.sets) { %>
+                    <option value="<%= set.code %>"><%= set.name %> (<%= set.code.toUpperCase() %>)</option>
+                    <% } %>
+                </select>
+                <span>sorted by</span>
+                <select id="sort-order-select">
+                    <option value="name">Name</option>
+                    <option value="number">Set/Number</option>
+                    <option value="rarity">Rarity</option>
+                    <option value="color">Color</option>
+                    <option value="cmc">Mana Value</option>
+                    <option value="power">Power</option>
+                    <option value="toughness">Toughness</option>
+                    <option value="artist">Artist Name</option>
+                </select>
+                <span>:</span>
+                <select id="sort-direction-select">
+                    <option value="auto">Auto</option>
+                    <option value="asc">Asc</option>
+                    <option value="desc">Desc</option>
+                </select>
+            </div>
+            <div id="pagination-top" class="search-pagination-controls" style="display: none;">
+                <button id="prev-page-top" class="pagination-btn">Previous</button>
+                <button id="next-page-top" class="pagination-btn">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="search-report" class="search-results-report"></div>
+
+    <main class="set-page" style="padding-top: 0;">
+        <section class="card-grid-section">
+            <div class="card-grid" id="card-grid">
+                <!-- Results will be injected here -->
+                <div class="no-results" id="loading-message">
+                    <p>Loading search index...</p>
+                </div>
+            </div>
+        </section>
+
+        <div id="pagination-bottom" class="search-pagination-controls" style="display: none; justify-content: center; margin-top: 3rem; margin-bottom: 3rem;">
+            <button id="prev-page-bottom" class="pagination-btn">Previous</button>
+            <button id="next-page-bottom" class="pagination-btn">Next</button>
+        </div>
+
+        <div class="card-zoom-overlay" id="card-zoom-overlay" aria-hidden="true">
+            <img class="card-zoom-image" id="card-zoom-image" alt="" />
+        </div>
+    </main>
+
+    <div class="zoom-hint" id="zoom-hint">
+        <kbd>Shift</kbd> + hover to zoom &nbsp;·&nbsp; scroll to resize
+    </div>
+
+    <%~ include('footer') %>
+</body>
+</html>
