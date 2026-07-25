@@ -93,11 +93,18 @@ export class ResultSorter {
         return 0;
     }
 
-    sort(cards, sortType, order) {
+    sort(cards, sortType, order, options = {}) {
         const strategy = STRATEGIES[sortType] || STRATEGIES['name'];
         const isAsc = order === 'auto' ? strategy.autoAsc : order === 'asc';
 
         return cards.slice().sort((a, b) => {
+            if (options.sortTokensLast) {
+                const aToken = /\b(token|emblem)\b/i.test(a.front.superType || '');
+                const bToken = /\b(token|emblem)\b/i.test(b.front.superType || '');
+                if (aToken && !bToken) return 1;
+                if (!aToken && bToken) return -1;
+            }
+
             if (strategy.compare)
                 return strategy.compare(a, b, isAsc);
 
