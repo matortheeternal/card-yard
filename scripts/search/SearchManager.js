@@ -24,6 +24,15 @@ export class SearchManager {
         };
 
         this.init();
+        this.bindPopState();
+    }
+
+    bindPopState() {
+        window.onpopstate = () => {
+            this.parseUrlParams();
+            this.ui.setControlValues(this.state);
+            this.performSearch();
+        };
     }
 
     async init() {
