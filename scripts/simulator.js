@@ -1,8 +1,7 @@
-/**
- * simulator.js — Client-side logic for the Simulator
- */
+import { CardZoom } from './CardZoom.js';
 
 let simulatorData = null;
+const zoom = new CardZoom();
 
 async function loadSimulatorData() {
     try {
@@ -78,6 +77,8 @@ function renderPack(packData) {
         img.src = `${imageExportPath}${card.image}`;
         img.alt = card.name;
         img.loading = 'lazy';
+
+        cardLink.dataset.imageFull = `${imageExportPath}${card.image}`;
 
         cardLink.appendChild(img);
         resultsContainer.appendChild(cardLink);

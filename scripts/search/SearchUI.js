@@ -87,8 +87,6 @@ export class SearchUI {
 
         this.renderGrid(pageResults, thumbnails);
         this.updatePagination(currentPage, totalPages);
-
-        if (window.initZoom) window.initZoom();
     }
 
     updateMeta(total, currentPage, query) {

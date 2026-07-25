@@ -1,11 +1,13 @@
 import { SearchEngine } from './SearchEngine.js';
 import { ResultSorter } from './ResultSorter.js';
 import { SearchUI } from './SearchUI.js';
+import { CardZoom } from '../CardZoom.js';
 
 export class SearchManager {
     constructor() {
         this.engine = new SearchEngine();
         this.sorter = new ResultSorter();
+        this.zoom = new CardZoom();
         this.ui = new SearchUI({
             onSearch: () => this.handleSearchTrigger(),
             onPageChange: (delta) => this.handlePageChange(delta)

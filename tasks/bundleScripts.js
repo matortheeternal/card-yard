@@ -7,7 +7,9 @@ export async function bundleScripts() {
     await esbuild.build({
         entryPoints: [
             path.join(PATHS.scripts, 'search.js'),
-            path.join(PATHS.scripts, 'random.js')
+            path.join(PATHS.scripts, 'random.js'),
+            path.join(PATHS.scripts, 'set.js'),
+            path.join(PATHS.scripts, 'simulator.js')
         ],
         bundle: true,
         minify: true,
