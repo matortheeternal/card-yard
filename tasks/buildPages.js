@@ -116,11 +116,27 @@ function getColor(card) {
     return 'M';
 }
 
+function computeCmc(face) {
+    if (!face || !face.manaCost || !Array.isArray(face.manaCost)) return 0;
+    return face.manaCost.reduce((acc, symbol) => {
+        if (typeof symbol === 'number') return acc + symbol;
+        if (typeof symbol === 'string') {
+            if (symbol.toLowerCase() === 'x') return acc;
+            const num = parseInt(symbol);
+            if (!isNaN(num)) return acc + num;
+            return acc + 1; // Non-numeric entry as 1
+        }
+        return acc;
+    }, 0);
+}
+
 function transformCardData(sets) {
     for (const set of sets) {
         for (const card of set.cards) {
             card.slug = getSlug(card);
             card.color = getColor(card);
+            if (card.front) card.front.cmc = computeCmc(card.front);
+            if (card.back) card.back.cmc = computeCmc(card.back);
         }
     }
 }
