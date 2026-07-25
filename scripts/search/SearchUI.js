@@ -21,7 +21,8 @@ export class SearchUI {
             type: document.getElementById('search-type-select'),
             scope: document.getElementById('scope-select'),
             sort: document.getElementById('sort-order-select'),
-            direction: document.getElementById('sort-direction-select')
+            direction: document.getElementById('sort-direction-select'),
+            message: document.getElementById('results-message'),
         };
 
         this.bindEvents();
@@ -39,9 +40,8 @@ export class SearchUI {
 
         const triggerSearch = () => this.callbacks.onSearch();
         ['type', 'scope', 'sort', 'direction'].forEach(key => {
-            if (this.controls[key]) {
+            if (this.controls[key])
                 this.controls[key].onchange = triggerSearch;
-            }
         });
 
         const handlePrev = () => this.callbacks.onPageChange(-1);
@@ -105,16 +105,31 @@ export class SearchUI {
             const escapedQuery = this.escapeHtml(query);
             html += ` <span class="query-display">found matching “${escapedQuery}”</span>`;
         }
+        this.report.classList.remove('error');
         this.report.innerHTML = html;
     }
 
     renderNoResults() {
-        this.grid.innerHTML = '<div class="no-results"><p>No cards found.</p></div>';
+        this.grid.innerHTML = '';
+        this.controls.message.style.display = 'block';
         this.togglePagination(false);
     }
 
     renderGrid(pageResults, thumbnails) {
-        this.grid.innerHTML = pageResults.map(card => this.renderCard(card, thumbnails)).join('');
+        this.controls.message.style.display = 'none';
+        this.grid.innerHTML = pageResults
+            .map(card => this.renderCard(card, thumbnails))
+            .join('');
+    }
+
+    getThumbnailUrl(fullImageUrl, width) {
+        return [
+            'https://wsrv.nl/?url=',
+            encodeURIComponent(fullImageUrl),
+            '&w=',
+            width.toString(),
+            '&output=webp'
+        ].join('');
     }
 
     renderCard(card, thumbnails) {
@@ -126,7 +141,7 @@ export class SearchUI {
         const fullImageUrl = `${imageExportPath}${card.imageExports.front}`;
 
         const displayImageUrl = thumbnails.enabled
-            ? `https://wsrv.nl/?url=${encodeURIComponent(fullImageUrl)}&w=${thumbnails.width || 300}&output=webp`
+            ? this.getThumbnailUrl(fullImageUrl, thumbnails.width || 300)
             : fullImageUrl;
 
         return `
@@ -139,7 +154,10 @@ export class SearchUI {
                data-number="${collectorNumber}"
                data-image-full="${fullImageUrl}"
                ${isToken ? 'data-is-token' : ''} >
-                <img class="card-grid-image" src="${displayImageUrl}" alt="${escapedName}" loading="lazy" />
+                <img class="card-grid-image"
+                     src="${displayImageUrl}"
+                     alt="${escapedName}"
+                     loading="lazy" />
             </a>
         `;
     }
@@ -152,8 +170,10 @@ export class SearchUI {
             const isFirst = currentPage === 1;
             const isLast = currentPage === totalPages;
 
-            [this.pagination.prevTop, this.pagination.prevBottom].forEach(btn => btn && (btn.disabled = isFirst));
-            [this.pagination.nextTop, this.pagination.nextBottom].forEach(btn => btn && (btn.disabled = isLast));
+            [this.pagination.prevTop, this.pagination.prevBottom]
+                .forEach(btn => btn && (btn.disabled = isFirst));
+            [this.pagination.nextTop, this.pagination.nextBottom]
+                .forEach(btn => btn && (btn.disabled = isLast));
         }
     }
 
@@ -164,8 +184,10 @@ export class SearchUI {
     }
 
     handleError(message) {
-        this.grid.innerHTML = `<div class="no-results"><p>${message}</p></div>`;
-        this.report.textContent = '';
+        this.grid.innerHTML = '';
+        this.renderNoResults();
+        this.report.classList.add('error');
+        this.report.textContent = `Search error: ${message}`;
         this.togglePagination(false);
     }
 

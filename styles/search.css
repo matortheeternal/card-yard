@@ -59,9 +59,17 @@
 .search-results-report {
     font-size: 0.8rem;
     color: var(--color-text);
+}
+
+.search-results-report .page-content {
     padding: 0.5rem 2rem;
     width: var(--page-max-width);
     margin: 0 auto;
+}
+
+.search-results-report:has(.error) {
+    background: #ff9999;
+    color: darkred;
 }
 
 .search-results-report strong {
@@ -71,6 +79,12 @@
 
 .search-results-report .query-display {
     color: var(--color-text-muted);
+}
+
+.search-results-error .search-error-content {
+    width: var(--page-max-width);
+    padding: 0.5rem 2rem;
+    margin: 0 auto;
 }
 
 .pagination-btn {
@@ -96,9 +110,5 @@
 
 .no-results {
     text-align: center;
-    padding: 4rem 2rem;
-    background: var(--color-surface);
-    border-radius: 12px;
-    border: 1px dashed var(--color-border);
-    margin: 0 2rem;
+    padding: 10rem;
 }

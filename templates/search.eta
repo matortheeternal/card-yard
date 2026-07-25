@@ -23,9 +23,24 @@
         <div class="search-page-header-inner">
             <section class="search-page-search-bar">
                 <div class="search-form">
-                    <input type="text" id="on-page-search-input" class="search-input" placeholder="Search cards..." aria-label="Search cards">
+                    <input type="text"
+                           id="on-page-search-input"
+                           class="search-input"
+                            placeholder="Search cards...
+                            " aria-label="Search cards">
                     <button type="button" id="on-page-search-submit" class="search-submit">
-                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        <svg viewBox="0 0 24 24"
+                             width="20"
+                             height="20"
+                             stroke="currentColor"
+                             stroke-width="2"
+                             fill="none"
+                             stroke-linecap="round"
+                             stroke-linejoin="round"
+                        >
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
                     </button>
                 </div>
             </section>
@@ -44,7 +59,9 @@
                 <select id="scope-select">
                     <option value="all">All Sets</option>
                     <% for (const set of it.sets) { %>
-                    <option value="<%= set.code %>"><%= set.name %> (<%= set.code.toUpperCase() %>)</option>
+                    <option value="<%= set.code %>">
+                        <%= set.name %> (<%= set.code.toUpperCase() %>)
+                    </option>
                     <% } %>
                 </select>
                 <span>sorted by</span>
@@ -72,17 +89,21 @@
         </div>
     </div>
 
-    <div id="search-report" class="search-results-report"></div>
+    <div class="search-results-report">
+        <div id="search-report" class="page-content"></div>
+    </div>
 
     <main class="set-page" style="padding-top: 0;">
         <section class="card-grid-section">
             <div class="card-grid" id="card-grid">
                 <!-- Results will be injected here -->
-                <div class="no-results" id="loading-message">
-                    <p>Loading search index...</p>
-                </div>
             </div>
         </section>
+
+        <div class="no-results" id="results-message" style="display: none">
+            <h1>No cards found</h1>
+            <p>Your search did not match any cards.</p>
+        </div>
 
         <div id="pagination-bottom" class="search-pagination-controls" style="display: none; justify-content: center; margin-top: 3rem; margin-bottom: 3rem;">
             <button id="prev-page-bottom" class="pagination-btn">Previous</button>
