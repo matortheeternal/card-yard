@@ -32,9 +32,7 @@ function sortCards(keyOverride = null, directionOverride = null) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    if (!sortSelect || !orderSelect)
-        throw new Error('Failed to instantiate sort system.');
-
+    if (!sortSelect || !orderSelect) return;
     sortSelect.addEventListener('change', () => sortCards());
     orderSelect.addEventListener('change', () => sortCards());
     sortCards('color', 'asc');
