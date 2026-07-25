@@ -79,6 +79,7 @@
                    data-name="<%= card.front.name %>"
                    data-color="<%= card.color %>"
                    data-rarity="<%= card.front.rarity %>"
+                   data-cmc="<%= card.front.cmc || 0 %>"
                    data-cost="<%= card.front.manaCost?.join?.('') || '' %>"
                    data-number="<%= collectorNumber %>"
                    data-image-full="<%= fullImageUrl %>"

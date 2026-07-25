@@ -34,9 +34,11 @@ async function performRandomRedirect() {
 
         const randomCard = cards[Math.floor(Math.random() * cards.length)];
         const setCode = randomCard.setCode || 'unknown';
-        const cardUrl = `sets/${setCode}/${randomCard.slug}?random=${encodeURIComponent(randomParam)}`;
+        const rngComponent = encodeURIComponent(randomParam);
 
-        window.location.href = cardUrl;
+        window.location.href = (
+            `sets/${setCode}/${randomCard.slug}?random=${rngComponent}`
+        );
     } catch (err) {
         console.error('Error during random card selection:', err);
         alert('An error occurred. Please try again.');
