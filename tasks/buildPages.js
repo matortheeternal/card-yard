@@ -116,6 +116,14 @@ function getColor(card) {
     return 'M';
 }
 
+function getColors(card) {
+    const colors = [
+        ...(card.front?.colors || []),
+        ...(card.back?.colors || [])
+    ].map(c => c.char);
+    return colors.sort().join('').toUpperCase();
+}
+
 function computeCmc(face) {
     if (!face || !face.manaCost || !Array.isArray(face.manaCost)) return 0;
     return face.manaCost.reduce((acc, symbol) => {
@@ -135,6 +143,7 @@ function transformCardData(sets) {
         for (const card of set.cards) {
             card.slug = getSlug(card);
             card.color = getColor(card);
+            card.colors = getColors(card);
             if (card.front) card.front.cmc = computeCmc(card.front);
             if (card.back) card.back.cmc = computeCmc(card.back);
         }

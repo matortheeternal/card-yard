@@ -43,6 +43,7 @@
                 <label class="set-control-label">
                     Sort by
                     <select id="sort-select">
+                        <option value="showcase">Showcase</option>
                         <option value="color">Color</option>
                         <option value="rarity">Rarity</option>
                         <option value="name">Name</option>
@@ -77,9 +78,10 @@
                 <a class="card-grid-item"
                    href="sets/<%= it.set.setCode %>/<%= card.slug %>"
                    data-name="<%= card.front.name %>"
-                   data-color="<%= card.color %>"
+                   data-color="<%= card.colors %>"
                    data-rarity="<%= card.front.rarity %>"
                    data-cmc="<%= card.front.cmc || 0 %>"
+                   data-type="<%= card.front.superType %>"
                    data-cost="<%= card.front.manaCost?.join?.('') || '' %>"
                    data-number="<%= collectorNumber %>"
                    data-image-full="<%= fullImageUrl %>"
