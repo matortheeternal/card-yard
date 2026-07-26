@@ -6,5 +6,9 @@
   "disclaimer": "This site is not affiliated with Wizards of the Coast.",
   "sets": [
     "matortheeternal/mtg-the-pale-age"
-  ]
+  ],
+  "thumbnails": {
+    "enabled": true,
+    "width": 300
+  }
 }
