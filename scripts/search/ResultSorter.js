@@ -1,7 +1,13 @@
+import { isBasicLand, isLand } from '../showcase/helpers.js';
+
 const RARITY_ORDER = {
     mythic: 0, rare: 1, uncommon: 2, common: 3, basic: 4, special: 5, bonus: 6
 };
-const COLOR_ORDER = { W: 0, U: 1, B: 2, R: 3, G: 4, M: 5, C: 6, L: 7 };
+const COLOR_ORDER = [
+    'W', 'U', 'B', 'R', 'G',
+    'UW', 'BU', 'BR', 'GR', 'GW',
+    'BW', 'RU', 'BG', 'RW', 'GU',
+];
 
 const compareNames = function(a, b) {
     const na = a.front.name.toLowerCase();
@@ -55,7 +61,13 @@ const STRATEGIES = {
     },
     color: {
         id: 'color',
-        getValue: c => COLOR_ORDER[c.color] ?? 99,
+        getValue: c => {
+            if (isBasicLand(c)) return 51;
+            if (isLand(c)) return 50;
+            if (c.color.length === 0) return 49;
+            if (c.color.length > 2) return 40 + c.color.length;
+            return (COLOR_ORDER.indexOf(c.color) + 1) || 99;
+        },
         autoAsc: true
     },
     cmc: {

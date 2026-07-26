@@ -13,7 +13,6 @@ async function performRandomRedirect() {
         const data = await response.json();
         let cards = data.cards;
 
-        // Exclude tokens and emblems by default
         cards = cards.filter(card => {
             const typeLine = card.front.superType || '';
             return !/\b(token|emblem)\b/i.test(typeLine);
