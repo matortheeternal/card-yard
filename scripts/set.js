@@ -1,4 +1,4 @@
-import { ResultSorter } from './search/ResultSorter.js';
+import { ResultSorter } from './ResultSorter.js';
 import { CardZoom } from './CardZoom.js';
 import { ShowcaseOrder } from './showcase/ShowcaseOrder.js';
 

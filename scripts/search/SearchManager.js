@@ -1,5 +1,5 @@
 import { SearchEngine } from './SearchEngine.js';
-import { ResultSorter } from './ResultSorter.js';
+import { ResultSorter } from '../ResultSorter.js';
 import { SearchUI } from './SearchUI.js';
 import { CardZoom } from '../CardZoom.js';
 

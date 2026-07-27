@@ -1,4 +1,4 @@
-import { isBasicLand, isLand } from '../showcase/helpers.js';
+import { isBasicLand, isLand } from './showcase/helpers.js';
 
 const RARITY_ORDER = {
     mythic: 0, rare: 1, uncommon: 2, common: 3, basic: 4, special: 5, bonus: 6

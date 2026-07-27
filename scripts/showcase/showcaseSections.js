@@ -78,7 +78,7 @@ export default [
 
     new Section('Basic Lands',
         c => isBasicLand(c) && !isTokenOrEmblem(c),
-        null, true
+        ['W', 'U', 'B', 'R', 'G']
     ),
 
     new Section('Tokens and Emblems',
