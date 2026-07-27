@@ -21,7 +21,9 @@
     "@sigil-sifter/magic": "^1.1.0",
     "@sigil-sifter/magic-cm": "^1.2.0",
     "eta": "^4.6.0",
+    "gray-matter": "^4.0.3",
     "mana-scribe": "^2.3.0",
+    "marked": "^18.0.7",
     "sigil-sifter": "^1.0.0"
   },
   "devDependencies": {

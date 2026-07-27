@@ -63,20 +63,6 @@ main.card {
     flex-shrink: 0;
 }
 
-.card-symbol {
-    display: inline-block;
-    background-size: 100% 100%;
-    background-position: top left;
-    box-shadow: -1px 1px 0 rgba(0,0,0,0.85);
-    width: 1.2em;
-    text-decoration: none;
-    cursor: default;
-    text-indent: -999em;
-    overflow: hidden;
-    border-radius: 500px;
-    margin: -2px 1px -1px 1px;
-}
-
 .card-text-box {
     display: flex;
     flex-direction: column;
@@ -90,7 +76,8 @@ main.card {
 
     .card-symbol {
         width: 1em;
-        height: 1em;
+        margin-bottom: -7px;
+        box-shadow: none;
     }
 
     .a {

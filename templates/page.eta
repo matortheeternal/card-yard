@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= it.page.title || it.page.name %>
+        &mdash; <%= it.set.title %>
+        &mdash; <%= it.site.title %>
+    </title>
+    <% if (it.page.description) { %>
+    <meta name="description" content="<%= it.page.description %>">
+    <% } %>
+    <base href="<%= it.site.baseUrl %>/">
+
+    <link rel="icon" href="resources/favicon.ico">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/page.css">
+
+    <script type="module" src="scripts/main.js"></script>
+</head>
+<body>
+    <%~ include('header') %>
+    <%~ include('setHeader') %>
+
+    <main class="page-content">
+        <section class="markdown-body">
+            <%~ it.page.html %>
+        </section>
+    </main>
+
+    <%~ include('footer') %>
+</body>
+</html>

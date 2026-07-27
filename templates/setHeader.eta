@@ -1,0 +1,22 @@
+<div class="set-nav">
+    <div class="page-content">
+        <a class="set-home" href="sets/<%= it.set.setCode %>">
+            <div class="set-symbol">
+                <%~ it.set.symbol %>
+            </div>
+            <span class="set-title"><%= it.set.title %></span>
+        </a>
+        <ul class="links">
+            <li>
+                <a href="sets/<%= it.set.setCode %>/cards">Cards</a>
+            </li>
+            <% for (const page of it.set.pages.filter(page => !page.hidden)) { %>
+            <li>
+                <a href="sets/<%= it.set.setCode %>/<%= page.name %>">
+                    <%= page.name %>
+                </a>
+            </li>
+            <% } %>
+        </ul>
+    </div>
+</div>

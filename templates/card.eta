@@ -23,6 +23,7 @@
 </head>
 <body>
     <%~ include('header') %>
+    <%~ include('setHeader') %>
 
     <main class="card">
         <div class="image-container">

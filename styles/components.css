@@ -1,7 +1,4 @@
 .navbar {
-    position: sticky;
-    top: 0;
-    z-index: 100;
     height: var(--navbar-height);
     display: flex;
     align-items: center;
@@ -295,6 +292,72 @@ ca-search-bar {
 
 .set-card:hover .set-name {
     color: var(--color-text);
+}
+
+.set-nav {
+    border-bottom: 1px solid #555;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: fit-content;
+    background: rgba(5, 5, 7, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    font-size: 80%;
+}
+
+.set-nav .page-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5em;
+    margin: auto;
+    padding: 0.5em;
+}
+
+.set-nav .set-home {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.set-nav .set-home::after {
+    bottom: 1px;
+    left: 30px;
+    width: calc(100% - 29px);
+}
+
+.set-nav .set-symbol {
+    height: 24px;
+    width: 24px;
+}
+
+.set-nav .links {
+    display: contents;
+}
+
+.set-nav a {
+    text-transform: capitalize;
+    cursor: pointer;
+    position: relative;
+}
+
+.set-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 0.1em;
+    background-color: var(--color-accent);
+    transition: opacity 300ms, transform 300ms;
+    opacity: 1;
+    transform: scale(0);
+    transform-origin: center;
+}
+
+.set-nav a:hover::after {
+    transform: scale(1);
 }
 
 .site-footer {

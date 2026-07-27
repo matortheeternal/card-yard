@@ -1,20 +1,7 @@
-import { ActivationCost } from 'mana-scribe';
+import { costToHtml } from './renderManaSymbols.js';
 
 function replaceReminderText(match) {
     return `<span class="r">${match}</span>`;
-}
-
-function costToHtml(cost) {
-    return cost.symbols.map(sym => {
-        const filename = sym.toString().replaceAll('/', '');
-        const style = `background-image: url('resources/symbols/${filename}.svg')`;
-        return `<abbr class="card-symbol" style="${style}">${sym.raw}</abbr>`;
-    }).join('') + cost.remainingStr;
-}
-
-function replaceSymbols(match) {
-    const cost = ActivationCost.parse(match);
-    return `<span class="s">${costToHtml(cost)}</span>`;
 }
 
 function replaceQuote(match, text) {
@@ -27,6 +14,10 @@ function replaceBracket(match, text) {
 
 function replaceAbilityWords(match, text) {
     return `<span class="a">${text}</span> — `
+}
+
+function replaceSymbols(match) {
+    return `<span class="s">${costToHtml(match)}</span>`;
 }
 
 const cardNameExpr = /CARDNAME|~/g;
