@@ -11,7 +11,7 @@ import { renderMarkdownTemplate } from './renderMarkdown.js';
 
 function buildSetCardPages(siteConfig, set) {
     const cardsPath = path.join(PATHS.dist, 'sets', set.setCode, 'cards');
-    const html = renderTemplate('set', {
+    const html = renderTemplate('cards', {
         site: siteConfig,
         set,
     });
@@ -40,10 +40,19 @@ async function buildSetSupplementalPages(siteConfig, set) {
     }
 }
 
+function buildSetRedirectPage(siteConfig, set) {
+    const html = renderTemplate('set', {
+        site: siteConfig,
+        set,
+    });
+    writeFile(path.join(PATHS.dist, 'sets', set.setCode, 'index.html'), html);
+}
+
 async function buildSetPages(siteConfig, sets) {
     for (const set of sets) {
         console.log(`  Rendering set page: ${set.setCode}`);
         await buildSetSupplementalPages(siteConfig, set);
+        await buildSetRedirectPage(siteConfig, set);
         buildSetCardPages(siteConfig, set);
     }
 }
