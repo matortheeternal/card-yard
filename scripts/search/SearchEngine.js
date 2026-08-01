@@ -10,16 +10,13 @@ export class SearchEngine {
     }
 
     filter(cards, query, type, setCode) {
-        let filteredCards = cards;
-
-        filteredCards = this.applyTypeFilter(filteredCards, type);
-        filteredCards = this.applySetFilter(filteredCards, setCode);
-
-        if (!query.trim()) {
-            return filteredCards;
-        }
-
-        return this.sifter.filter(filteredCards, query);
+        const filteredCards = this.applySetFilter(
+            this.applyTypeFilter(cards, type),
+            setCode
+        );
+        return query.trim()
+            ? this.sifter.filter(filteredCards, query)
+            : filteredCards;
     }
 
     applyTypeFilter(cards, type) {
