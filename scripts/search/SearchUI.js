@@ -146,7 +146,7 @@ export class SearchUI {
 
         return `
             <a class="card-grid-item"
-               href="sets/${setCode}/${card.slug}"
+               href="sets/${setCode}/cards/${card.slug}"
                data-name="${escapedName}"
                data-color="${card.color}"
                data-rarity="${card.front.rarity}"
