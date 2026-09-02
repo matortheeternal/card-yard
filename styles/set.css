@@ -177,10 +177,14 @@ main.set-page {
 
 .card-zoom-overlay {
     position: fixed;
+    top: 0;
+    left: 0;
     z-index: 200;
     pointer-events: none;
     display: none;
     filter: drop-shadow(0 16px 40px rgba(0, 0, 0, 0.8));
+    will-change: transform;
+    backface-visibility: hidden;
 }
 
 .card-zoom-overlay.visible {

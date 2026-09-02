@@ -75,20 +75,19 @@ export class CardZoom {
     }
 
     positionOverlay(e) {
-        let x = e.clientX - (this.zoomSize / 2);
-        let y = e.clientY - (this.zoomSize / 2);
+        const vw = window.innerWidth;
+        const vh = window.innerHeight;
+        const baseX = e.clientX - (this.zoomSize / 2);
+        const baseY = e.clientY - (this.zoomSize / 2);
 
-        this.overlay.style.left = `${x}px`;
-        this.overlay.style.top = `${y}px`;
+        const x = Math.round(Math.max(0, Math.min(baseX, vw - this.overlay.offsetWidth)));
+        const y = Math.round(Math.max(0, Math.min(baseY, vh - this.overlay.offsetHeight)));
+
+        this.overlay.style.transform = `translate3d(${x}px, ${y}px, 0)`;
     }
 
-    showZoom(card, e) {
-        const img = card.querySelector('.card-grid-image');
-        if (!img) return;
-
-        const fullSrc = card.dataset.imageFull;
-        const thumbSrc = img.src;
-
+    changeZoomImage(img, fullSrc) {
+        const thumbSrc = img.getAttribute('src');
         this.zoomImg.src = thumbSrc;
         this.zoomImg.alt = img.alt;
         this.zoomImg.classList.add('loading');
@@ -106,6 +105,16 @@ export class CardZoom {
         } else {
             this.zoomImg.classList.remove('loading');
         }
+    }
+
+    showZoom(card, e) {
+        const img = card.querySelector('.card-grid-image');
+        if (!img) return;
+
+        const fullSrc = card.dataset.imageFull;
+        const currentSrc = this.zoomImg.getAttribute('src');
+        if (currentSrc !== fullSrc)
+            this.changeZoomImage(img, fullSrc);
 
         this.overlay.style.setProperty('--zoom-size', `${this.zoomSize}px`);
         this.overlay.classList.add('visible');
