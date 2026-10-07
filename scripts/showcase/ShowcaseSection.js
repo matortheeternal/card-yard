@@ -1,4 +1,5 @@
 import Column from './ShowcaseColumn.js';
+import { escapeHtml } from '../helpers.js';
 
 export default class Section {
     constructor(name, test, columnConfigs = null, isGrid = false) {
@@ -37,6 +38,7 @@ export default class Section {
 
         return `
             <section class="showcase-section">
+                <h3>${escapeHtml(this.name)}</h3>
                 <div class="showcase-section-content ${hasColumns ? 'has-columns' : ''}">
                     ${columnsHtml}
                 </div>
