@@ -1,3 +1,5 @@
+import { escapeHtml } from '../helpers.js';
+
 export class SearchUI {
     constructor(callbacks) {
         this.pageSize = 60;
@@ -102,7 +104,7 @@ export class SearchUI {
 
         let html = `<strong>${countRange}${cardsText}</strong>`;
         if (query) {
-            const escapedQuery = this.escapeHtml(query);
+            const escapedQuery = escapeHtml(query);
             html += ` <span class="query-display">found matching “${escapedQuery}”</span>`;
         }
         this.report.classList.remove('error');
@@ -137,7 +139,7 @@ export class SearchUI {
         const imageExportPath = card.imageExportPath || `sets/${setCode}/`;
         const collectorNumber = card.front.collectorNumber || card.front.autoCollectorNumber;
         const isToken = /\b(token|emblem)\b/i.test(card.front.superType || '');
-        const escapedName = this.escapeHtml(card.front.name);
+        const escapedName = escapeHtml(card.front.name);
         const fullImageUrl = `${imageExportPath}${card.imageExports.front}`;
 
         const displayImageUrl = thumbnails.enabled
@@ -189,14 +191,5 @@ export class SearchUI {
         this.report.classList.add('error');
         this.report.textContent = `Search error: ${message}`;
         this.togglePagination(false);
-    }
-
-    escapeHtml(str) {
-        return str
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#039;');
     }
 }

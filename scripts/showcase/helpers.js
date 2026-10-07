@@ -1,9 +1,10 @@
-const RARITY_ORDER = {
+export const RARITY_ORDER = {
     special: 0,
     mythic: 1,
     rare: 2,
     uncommon: 3,
-    common: 4
+    common: 4,
+    land: 5,
 };
 
 export const MONO_COLORS = ['W', 'U', 'B', 'R', 'G'];
@@ -27,11 +28,11 @@ export function isEnchantment(card) {
 }
 
 export function isBasicLand(card) {
-    return /\bbasic land\b/i.test(card.front.superType || '');
+    return /\bbasic\b/i.test(card.front.superType || '');
 }
 
-export function isTokenOrEmblem(card) {
-    return /\b(token|emblem)\b/i.test(card.front.superType || '');
+export function isExtraCard(card) {
+    return !Object.hasOwn(RARITY_ORDER, card.front.rarity);
 }
 
 export function getColors(card) {

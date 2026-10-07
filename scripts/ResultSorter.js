@@ -1,15 +1,12 @@
-import { isBasicLand, isLand } from './showcase/helpers.js';
+import { RARITY_ORDER, isBasicLand, isExtraCard, isLand } from './showcase/helpers.js';
 
-const RARITY_ORDER = {
-    mythic: 0, rare: 1, uncommon: 2, common: 3, basic: 4, special: 5, bonus: 6
-};
 const COLOR_ORDER = [
     'W', 'U', 'B', 'R', 'G',
     'UW', 'BU', 'BR', 'GR', 'GW',
     'BW', 'RU', 'BG', 'RW', 'GU',
 ];
 
-const compareNames = function(a, b) {
+function compareNames(a, b) {
     const na = a.front.name.toLowerCase();
     const nb = b.front.name.toLowerCase();
     if (na < nb) return -1;
@@ -111,8 +108,8 @@ export class ResultSorter {
 
         return cards.slice().sort((a, b) => {
             if (options.sortTokensLast) {
-                const aToken = /\b(token|emblem)\b/i.test(a.front.superType || '');
-                const bToken = /\b(token|emblem)\b/i.test(b.front.superType || '');
+                const aToken = isExtraCard(a);
+                const bToken = isExtraCard(b);
                 if (aToken && !bToken) return 1;
                 if (!aToken && bToken) return -1;
             }

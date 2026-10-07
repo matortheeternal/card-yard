@@ -1,7 +1,7 @@
 import {
     isBasicLand,
     isLand,
-    isTokenOrEmblem,
+    isExtraCard,
     MONO_COLORS, ALLY_COLOR_PAIRS, ENEMY_COLOR_PAIRS
 } from './helpers.js';
 import Section from './ShowcaseSection.js';
@@ -9,7 +9,7 @@ import Section from './ShowcaseSection.js';
 export default [
     new Section('Mono-color',
         c => !isLand(c)
-            && !isTokenOrEmblem(c)
+            && !isExtraCard(c)
             && c.color.length === 1
             && MONO_COLORS.includes(c.color),
         ['W', 'U', 'B', 'R', 'G']
@@ -17,7 +17,7 @@ export default [
 
     new Section('Multicolor Pairs (Ally)',
         c => !isLand(c)
-            && !isTokenOrEmblem(c)
+            && !isExtraCard(c)
             && c.color.length === 2
             && ALLY_COLOR_PAIRS.includes(c.color),
         ALLY_COLOR_PAIRS
@@ -25,7 +25,7 @@ export default [
 
     new Section('Multicolor Pairs (Enemy)',
         c => !isLand(c)
-            && !isTokenOrEmblem(c)
+            && !isExtraCard(c)
             && c.color.length === 2
             && ENEMY_COLOR_PAIRS.includes(c.color),
         ENEMY_COLOR_PAIRS
@@ -33,14 +33,14 @@ export default [
 
     new Section('Multicolor (3+ colors)',
         c => !isLand(c)
-            && !isTokenOrEmblem(c)
+            && !isExtraCard(c)
             && c.color.length >= 3,
         null, true
     ),
 
     new Section('Colorless',
         c => !isLand(c)
-            && !isTokenOrEmblem(c)
+            && !isExtraCard(c)
             && c.color.length === 0,
         null, true
     ),
@@ -77,12 +77,12 @@ export default [
     ),
 
     new Section('Basic Lands',
-        c => isBasicLand(c) && !isTokenOrEmblem(c),
+        c => isBasicLand(c) && !isExtraCard(c),
         ['W', 'U', 'B', 'R', 'G']
     ),
 
-    new Section('Tokens and Emblems',
-        c => isTokenOrEmblem(c),
+    new Section('Tokens and Extras',
+        c => isExtraCard(c),
         null, true
     )
 ];
