@@ -330,6 +330,10 @@ ca-search-bar {
 .set-nav .set-symbol {
     height: 24px;
     width: 24px;
+
+    svg {
+        height: 100%;
+    }
 }
 
 .set-nav .links {
