@@ -134,13 +134,19 @@ export class SearchUI {
         ].join('');
     }
 
+    getCardImagePath(card) {
+        const { filePath, hash } = card.imageExports.front;
+        return filePath !== undefined
+            ? `dist/${filePath}?h=${hash}`
+            : `${card.imageExportPath}${card.imageExports.front}`;
+    }
+
     renderCard(card, thumbnails) {
         const setCode = card.setCode || 'unknown';
-        const imageExportPath = card.imageExportPath || `sets/${setCode}/`;
         const collectorNumber = card.front.collectorNumber || card.front.autoCollectorNumber;
         const isToken = /\b(token|emblem)\b/i.test(card.front.superType || '');
         const escapedName = escapeHtml(card.front.name);
-        const fullImageUrl = `${imageExportPath}${card.imageExports.front}`;
+        const fullImageUrl = this.getCardImagePath(card);
 
         const displayImageUrl = thumbnails.enabled
             ? this.getThumbnailUrl(fullImageUrl, thumbnails.width || 300)
