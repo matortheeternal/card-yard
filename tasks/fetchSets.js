@@ -20,7 +20,7 @@ function loadSet(folderPath, setJsonPath) {
     console.log(`  Loading set from ${folderPath}`);
     const data = JSON.parse(fs.readFileSync(setJsonPath, 'utf-8'));
     data.pages = loadMarkdownPages(folderPath);
-    data.imageExportPath = [data.baseUrl, data.imageExportPath].join('/');
+    data.imageExportPath = [data.baseUrl, 'dist/'].join('/');
     return data;
 }
 

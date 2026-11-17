@@ -136,9 +136,7 @@ export class SearchUI {
 
     getCardImagePath(card) {
         const { filePath, hash } = card.imageExports.front;
-        return filePath !== undefined
-            ? `dist/${filePath}?h=${hash}`
-            : `${card.imageExportPath}${card.imageExports.front}`;
+        return `dist/${filePath}?h=${hash}`;
     }
 
     renderCard(card, thumbnails) {
