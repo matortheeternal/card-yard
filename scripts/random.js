@@ -36,7 +36,7 @@ async function performRandomRedirect() {
         const rngComponent = encodeURIComponent(randomParam);
 
         window.location.href = (
-            `sets/${setCode}/${randomCard.slug}?random=${rngComponent}`
+            `sets/${setCode}/cards/${randomCard.slug}?random=${rngComponent}`
         );
     } catch (err) {
         console.error('Error during random card selection:', err);
